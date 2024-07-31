@@ -49,7 +49,7 @@
       <!-- TODO: CODE TO RENDER LIST OF AUSTEN'S WORKS HERE -->
        <ul>
         <li v-for="austenWork in austen.famousWorks" :key = "austenWork">
-          {{ austenWork }}
+          {{ austenWork.title }}
         </li>
        </ul>
     </section>
@@ -63,29 +63,56 @@
         Company:
         <!-- Activity 9a: Get the company name from the bookstores object. -->
         <!-- TODO: CODE TO GET COMPANY NAME HERE -->
+         {{ bookstores.name }}
+
       </p>
 
       <p>
         Total Stores:
         <!-- Activity 9b: Get the total number of stores from the bookstores object. -->
         <!-- TODO: CODE TO GET TOTAL STORES HERE -->
+        {{ bookstores.totalStores }}
+
       </p>
 
       <h3>Iterating Object Properties</h3>
       <p>Store Types:</p>
       <!-- Activity 10: Iterate through the storeTypes array and display the store type and the number of stores that use that type. -->
       <!-- TODO: CODE TO RENDER LIST OF STORE TYPES HERE -->
+      <ul>
+        <li v-for=" (count, storetype) in bookstores.storeTypes" :key = "storetype">
+        {{ storetype }} : {{ count }} stores
+        </li>
+      </ul>
+
 
       <h3>Nested Objects</h3>
       <p>Opening Hours:</p>
       <!-- Activity 11: Iterate through the openingHours object and display the day of the week and the opening and closing times. -->
       <!-- TODO: CODE TO RENDER LIST OF OPENING HOURS HERE -->
 
+      <li v-for = "(hours, dayOfWeek) in bookstores.openingHours" :key = "dayOfWeek">
+        <!--{{ dayOfWeek }} {{ hours }} -->
+         {{ dayOfWeek }} : {{ hours.open }} to {{ hours.close }}
+      </li>
+
       <h3>Working with Arrays in Objects</h3>
       <!-- Activity 12: Get the top sellers from the bookstores object. -->
       <!-- TODO: CODE TO GET TOP SELLERS HERE -->
-      <p>We operate in:</p>
-      <p>Our #1 seller:</p>
+      <p>We operate in: 
+       
+      <ul>
+        <li v-for = "operating in bookstores.countries" :key = "operating">
+          {{ operating }}
+        </li>
+      </ul>
+      </p>
+        
+     <!-- {{ bookstores.countries }}</p> -->
+      <p>Our #1 seller:
+        {{ bookstores.topSellers[0] }}
+      </p>
+
     </section>
 
     <section class="lab-section">
@@ -94,8 +121,14 @@
       <!-- Activity 13: Toggle the message visibility when the button is clicked. -->
       <!-- TODO: CODE TO TOGGLE MESSAGE VISIBILITY HERE. Hint: Use the v-if directive. -->
       <button @click="showMessage = !showMessage">Toggle Message</button>
+      <p v-if="showMessage" class="message success">
+        ✨ You're a Vue superstar! ✨
+      </p>
+      <p v-else class="message">Click the button to see a message.</p>
+
+      <!---<button @click="showMessage = !showMessage">Toggle Message</button>
       <p class="message success">✨ You're a Vue superstar! ✨</p>
-      <p>Click the button to see a message.</p>
+      <p>Click the button to see a message.</p> -->
     </section>
 
     <section class="lab-section">
@@ -146,6 +179,7 @@ const austen = computed(() => {
   return authors.find((author) => author.id === 1);
 
 });
+
 </script>
 
 <style scoped>
