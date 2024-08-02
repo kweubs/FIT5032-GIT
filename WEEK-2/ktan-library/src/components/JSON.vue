@@ -134,13 +134,30 @@
     <section class="lab-section">
       <h2>Attribute, Class and Style Binding with <code>v-bind</code></h2>
       <p>Highlighting Specific Authors:</p>
+      <p>1) Displaying Authors:
+        <ul>
+          <li v-for = "author in authors" :key = "author"
+          :style = "author.name === 'George Orwell' ? {backgroundColor: backgroundColour } : {}">
+            {{ author.name }}
+          </li>
+        </ul>
+      </p>
+
 
     </section>
+
+
+    <section class= "style-binding-example" :style="{ color: textColor, fontSize: fontSize + 'px' }">Dynamic Style</section>
+
+
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+
+const textColor = ref('pink')
+const fontSize = ref(20)
+
 
 // Activity 1: Import JSON files (authors.json and bookstores.json)
 // TODO: CODE TO IMPORT JSON FILES HERE
@@ -148,7 +165,7 @@ import { ref, computed } from "vue"
 
 import authors from "../assets/json/authors.json"
 import bookstores from "../assets/json/bookstores.json"
-
+import { ref, computed} from "vue"
 
 const showMessage = ref(false)
 
@@ -179,6 +196,9 @@ const austen = computed(() => {
   return authors.find((author) => author.id === 1);
 
 });
+
+// Activity: Highlighting Specific Authors
+const backgroundColour = ref('pink')
 
 </script>
 
