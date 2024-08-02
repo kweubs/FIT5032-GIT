@@ -137,6 +137,7 @@
       <p>1) Displaying Authors:
         <ul>
           <li v-for = "author in authors" :key = "author"
+          :class = "{ highlighted: author.name === 'George Orwell'}"
           :style = "author.name === 'George Orwell' ? {backgroundColor: backgroundColour } : {}">
             {{ author.name }}
           </li>
@@ -243,6 +244,10 @@ h1 {
 
 .highlight {
   background-color: #42b883;
+}
+
+.highlighted {
+  font-weight: bold;
 }
 
 code {
